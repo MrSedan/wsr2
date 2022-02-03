@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">wsr2</string>
+    <string name="register_button">Регистрация</string>
+    <string name="login_button">Войти</string>
 </resources>
