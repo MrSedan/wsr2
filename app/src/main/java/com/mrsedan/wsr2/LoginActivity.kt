@@ -22,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
         val req = JsonObjectRequest(Request.Method.POST,"http://cinema.areas.su/auth/login",obj,
             {
                Toast.makeText(this,it.getString("token"),Toast.LENGTH_LONG).show()
+                startActivity(Intent(this,MainMenuActivity::class.java))
+                finishAffinity()
             },{
                 Log.e("Aboba",it.toString())
             })
