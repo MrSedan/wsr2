@@ -27,6 +27,19 @@
                 android:src="@drawable/ic_logo"
                 android:contentDescription="@string/app_name"
                 android:background="@drawable/cover_image"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="В тренде"
+                android:textColor="#43DED0"
+                android:textFontWeight="700"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="368.4dp"
+                android:textSize="24sp"
+                android:gravity="top"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
     <androidx.constraintlayout.widget.ConstraintLayout
