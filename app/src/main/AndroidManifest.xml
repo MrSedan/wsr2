@@ -14,16 +14,13 @@
         android:theme="@style/Theme.Wsr2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DiscussActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LaunchScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

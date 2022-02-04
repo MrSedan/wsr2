@@ -29,7 +29,6 @@ class LoginActivity : AppCompatActivity() {
         obj.put("password",findViewById<EditText>(R.id.password).text.toString())
         val req = JsonObjectRequest(Request.Method.POST,"http://cinema.areas.su/auth/login",obj,
             {
-               Toast.makeText(this,it.getString("token"),Toast.LENGTH_LONG).show()
                 startActivity(Intent(this,MainMenuActivity::class.java))
                 setText("token",it.getString("token"))
                 finishAffinity()
@@ -42,9 +41,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mSettings = getSharedPreferences("settings", MODE_PRIVATE)
         setContentView(R.layout.activity_login)
-        findViewById<Button>(R.id.goToRegisterButton).setOnClickListener{
-            startActivity(Intent(this,RegisterActivity::class.java))
-        }
         findViewById<ConstraintLayout>(R.id.loginButton).setOnClickListener{
             login()
         }
