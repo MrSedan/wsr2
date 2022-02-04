@@ -35,6 +35,34 @@ class MainMenuActivity : AppCompatActivity() {
             },{})
         que.add(req)
     }
+
+    private fun drawLastWatched(){
+        val pic = findViewById<ImageView>(R.id.youWatchedPic)
+        val name = findViewById<TextView>(R.id.youWatchedName)
+        val que = Volley.newRequestQueue(this)
+        val token = getText("token")
+        val req =object : JsonArrayRequest(Request.Method.GET,"http://cinema.areas.su/usermovies?filter=lastView",null,
+            {
+                val item = it.getJSONObject(0)
+                Glide.with(this)
+                    .load("http://cinema.areas.su/up/images/"+item.getString("poster"))
+                    .into(pic)
+                name.text = item.getString("name")
+            },{
+                Log.e("Aboba",it.toString())
+            }) {
+            override fun getHeaders(): Map<String, String> {
+                val headers: MutableMap<String, String> =
+                    HashMap()
+                headers["Content-Type"] = "application/json"
+                headers["Accept"] = "application/json"
+                headers["Authorization"] = "Bearer $token"
+                return headers
+            }
+        }
+        que.add(req)
+    }
+
     private fun drawProfile(){
         val pic = findViewById<ImageView>(R.id.userAvatar)
         val userName = findViewById<TextView>(R.id.name)
@@ -74,5 +102,6 @@ class MainMenuActivity : AppCompatActivity() {
             finishAffinity()
         }
         drawProfile()
+        drawLastWatched()
     }
 }
