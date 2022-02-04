@@ -1,6 +1,7 @@
 package com.mrsedan.wsr2
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,13 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
+    lateinit var mSettings: SharedPreferences
+    private fun getText(key:String):String{
+        return mSettings.getString(key,"").toString()
+    }
+    private fun setText(key:String,v: String){
+        mSettings.edit().putString(key,v).apply()
+    }
     private fun login(){
         val que = Volley.newRequestQueue(this)
         val obj = JSONObject()
@@ -23,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
             {
                Toast.makeText(this,it.getString("token"),Toast.LENGTH_LONG).show()
                 startActivity(Intent(this,MainMenuActivity::class.java))
+                setText("token",it.getString("token"))
                 finishAffinity()
             },{
                 Log.e("Aboba",it.toString())
@@ -31,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mSettings = getSharedPreferences("settings", MODE_PRIVATE)
         setContentView(R.layout.activity_login)
         findViewById<Button>(R.id.goToRegisterButton).setOnClickListener{
             startActivity(Intent(this,RegisterActivity::class.java))
